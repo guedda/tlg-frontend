@@ -1,13 +1,13 @@
 import { Suspense } from 'react';
-import { RoundsList } from '../components/RoundsList';
+import { RoundDetail } from '../components/RoundDetail';
 import { LoadingFallback } from '../components/LoadingFallback';
 
-const Rounds: React.FC = () => {
+const Round: React.FC = () => {
   return (
     <Suspense fallback={<LoadingFallback />}>
-      <RoundsList />
+      <RoundDetail />
     </Suspense>
   );
 };
 
-export default Rounds;
+export default Round;
