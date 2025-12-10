@@ -27,3 +27,31 @@ export interface TapResponse {
   totalTaps: number;
   score: number;
 }
+
+export const RoundStatus = {
+  COOLDOWN: 'cooldown',
+  ACTIVE: 'active',
+  FINISHED: 'finished',
+} as const;
+
+export type RoundStatus = typeof RoundStatus[keyof typeof RoundStatus];
+
+export interface User {
+  id: string;
+  username: string;
+  role: UserRole;
+}
+
+export interface Round {
+  id: string;
+  startDate: string;
+  endDate: string;
+  createdAt: string;
+  status: RoundStatus;
+  userScore?: number;
+  totalTaps: number;
+  winner: {
+    username: string;
+    score: number;
+  } | null;
+}

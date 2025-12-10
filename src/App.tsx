@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { ProtectedRoute } from "./components/ProtectedRoute"
 import { Login } from "./pages/Login"
+import Rounds from "./pages/Rounds"
 
 function App() {
   return (
@@ -15,14 +16,7 @@ function App() {
           } 
         />
         <Route path="/login" element={<Login />} />
-        <Route 
-          path="/rounds" 
-          element={
-            <ProtectedRoute>
-              <div>Rounds</div>
-            </ProtectedRoute>
-          } 
-        />
+        <Route path="/rounds" element={<Rounds />} />
       </Routes>
     </BrowserRouter>
   )

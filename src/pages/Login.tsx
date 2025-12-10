@@ -1,37 +1,20 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { authApi } from '../api/auth';
-import { AxiosError } from 'axios';
+import React from 'react';
+import { useLogin } from '../hooks/useLogin';
 
 export const Login: React.FC = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
-
-    try {
-      await authApi.login({ username, password });
-      navigate('/rounds');
-    } catch (err: unknown) {
-      if (err instanceof AxiosError) {
-        setError(err.response?.data?.message || 'Ошибка входа');
-      } else {
-        setError('Ошибка входа');
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+  const {
+    username,
+    password,
+    error,
+    loading,
+    setUsername,
+    setPassword,
+    handleSubmit,
+  } = useLogin();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 md:px-6 font-sans">
-      <div className="w-full md:max-w-md bg-white rounded-lg shadow-lg p-6 md:p-8">
+    <div className="min-h-screen flex items-center justify-center md:bg-gray-50 px-4 md:px-6 font-sans">
+      <div className="w-full md:max-w-md bg-white rounded-lg md:shadow-lg p-6 md:p-8">
         <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">ВОЙТИ</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-6">
